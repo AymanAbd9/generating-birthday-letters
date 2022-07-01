@@ -1,7 +1,9 @@
-with open('Input/Names/invited_names.txt') as names:
-    for name in names:
-        name = name.strip()
-        with open('Output/ReadyToSend/' + name + '.txt', "w+") as new_letter:
+PLACEHOLDER = "[name]"
+
+with open('Input/Names/invited_names.txt') as names_file:
+    for name in names_file:
+        stripped_name = name.strip()
+        with open(f'Output/ReadyToSend/letter_for_{stripped_name}.txt', "w+") as new_letter:
             with open('Input/Letters/starting_letter.txt') as letter:
                 for line in letter:
-                    new_letter.write(line.replace("[name]", name))
+                    new_letter.write(line.replace(PLACEHOLDER, stripped_name))
